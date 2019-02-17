@@ -19,10 +19,13 @@
 
 - name: configure minecraft server
   template:
-    src: eula.j2
-    dest: /opt/minecraft/{{ minecraft_server_type }}/eula.txt
+    src: "{{ item }}.j2"
+    dest: /opt/minecraft/{{ minecraft_server_type }}/{{ item }}
     owner: root
     group: root
+  with_items:
+    - eula.txt
+    - server.properties
 
 - name: write minecraft systemd file
   copy:
