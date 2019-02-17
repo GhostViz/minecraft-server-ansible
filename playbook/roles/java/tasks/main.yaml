@@ -1,0 +1,11 @@
+- name: Install Java JDK (CentOS / RHEL)
+  yum:
+    name: java-1.8.0-openjdk
+    state: latest
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: Install Java JDK (Debian / Ubuntu)
+  apt:
+    name: openjdk-8-jre
+    state: latest
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'

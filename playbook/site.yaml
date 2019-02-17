@@ -1,0 +1,17 @@
+- name: setup java
+  hosts: minecraft_server
+  gather_facts: true
+  become: true
+  roles:
+    - java
+  tags:
+    - java
+
+- name: setup minecraft server
+  hosts: minecraft_server
+  gather_facts: false
+  become: true
+  roles:
+    - minecraft-server
+  tags:
+    - minecraft-server

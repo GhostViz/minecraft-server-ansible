@@ -1,0 +1,25 @@
+- name: Create minecraft user
+  user:
+    name: minecraft
+    comment: Minecraft Server
+    group: minecraft
+
+- name: Create directories for Minecraft Server
+  file:
+    path: /opt/{{ items }}
+    state: directory
+  with_items:
+    - minecraft
+    - minecraft/{{ minecraft_server_type }}
+
+- name: Download Minecraft Server
+  get_url:
+    url: {{ minecraft_server_download_url }}
+    dest: /opt/minecraft/{{ minecraft_server_type }}/minecraft_server.jar
+    mode: 0750
+
+- name: Start and Enable Minecraft Server
+  systemd:
+    name: minecraft@{{ minecraft_server_type }}
+    state: started
+    enabled: yes
