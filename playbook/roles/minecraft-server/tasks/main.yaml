@@ -1,24 +1,38 @@
-- name: Create minecraft user
+- name: create minecraft user
   user:
     name: minecraft
     comment: Minecraft Server
-    group: minecraft
 
-- name: Create directories for Minecraft Server
+- name: create directories for minecraft server
   file:
-    path: /opt/{{ items }}
+    path: /opt/{{ item }}
     state: directory
   with_items:
     - minecraft
     - minecraft/{{ minecraft_server_type }}
 
-- name: Download Minecraft Server
+- name: download minecraft server
   get_url:
-    url: {{ minecraft_server_download_url }}
+    url: "{{ minecraft_server_download_url }}"
     dest: /opt/minecraft/{{ minecraft_server_type }}/minecraft_server.jar
     mode: 0750
 
-- name: Start and Enable Minecraft Server
+- name: configure minecraft server
+  template:
+    src: eula.j2
+    dest: /opt/minecraft/{{ minecraft_server_type }}/eula.txt
+    owner: root
+    group: root
+
+- name: write minecraft systemd file
+  copy:
+    src: minecraft@.service
+    dest: /usr/lib/systemd/system/minecraft@.service
+    owner: root
+    group: root
+    mode: 0644
+
+- name: start and enable minecraft server
   systemd:
     name: minecraft@{{ minecraft_server_type }}
     state: started
