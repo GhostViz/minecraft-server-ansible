@@ -16,6 +16,7 @@
     url: "{{ minecraft_server_download_url }}"
     dest: /opt/minecraft/{{ minecraft_server_type }}/minecraft_server.jar
     mode: 0750
+    owner: minecraft
 
 - name: configure minecraft server
   template:
