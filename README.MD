@@ -1,14 +1,9 @@
 # Minecraft-Server-Ansible #
 
 ## How To Use ###
-Create your inventory file and set the following vars.
+Create your inventory file and set the vars in group_vars/all.
 
-```
-minecraft_server_type = "<survival/creative>"
-minecraft_server_download_url = "<url to server.jar you want to download>"
-```
-
-Once your inventory file is created you will run the ansible playbook from the minecraft-server-ansible directory.
+Once your inventory file is created and vars set you will run the ansible playbook from the minecraft-server-ansible directory.
 
 ```
 ansible-playbook -i inventories/<your inventory file> playbook/site.yaml
