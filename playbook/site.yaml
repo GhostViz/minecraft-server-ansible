@@ -9,7 +9,7 @@
 
 - name: setup minecraft server
   hosts: minecraft_server
-  gather_facts: false
+  gather_facts: true
   become: true
   roles:
     - minecraft-server

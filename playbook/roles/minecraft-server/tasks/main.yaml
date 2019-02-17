@@ -30,6 +30,14 @@
     - eula.txt
     - server.properties
 
+- name: create directory for system - debian / ubuntu
+  file:
+    path: /usr/lib/systemd/system
+    state: directory
+    owner: root
+    group: root
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
 - name: write minecraft systemd file
   copy:
     src: minecraft@.service
