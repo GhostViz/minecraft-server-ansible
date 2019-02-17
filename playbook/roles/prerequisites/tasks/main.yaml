@@ -7,7 +7,7 @@
     - screen
   when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
 
-- name: install prerequisite packages - debian/ubunut
+- name: install prerequisite packages - debian/ubuntu
   apt:
     name: "{{ item }}"
     state: latest
