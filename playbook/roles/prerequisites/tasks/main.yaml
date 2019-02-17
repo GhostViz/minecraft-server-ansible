@@ -1,0 +1,17 @@
+- name: install prerequisite packages - rhel/centos
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - java-1.8.0-openjdk
+    - screen
+  when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+- name: install prerequisite packages - debian/ubunut
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - openjdk-8-jre
+    - screen
+  when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'

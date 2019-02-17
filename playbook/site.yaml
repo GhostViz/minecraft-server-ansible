@@ -1,11 +1,11 @@
-- name: setup java
+- name: setup prerequisites
   hosts: minecraft_server
   gather_facts: true
   become: true
   roles:
-    - java
+    - prerequisites
   tags:
-    - java
+    - prerequisites
 
 - name: setup minecraft server
   hosts: minecraft_server
